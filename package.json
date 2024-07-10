@@ -1,0 +1,30 @@
+{
+  "name": "@aws-samples/mlops-pipeline",
+  "version": "0.1.0",
+  "bin": {
+    "mlops-pipeline": "infra/app-main.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "update-modules": "npm i -g npm-check-updates && ncu -u && npm i"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "2.68.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.10",
+    "aws-cdk": "2.148.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.148.0",
+    "constructs": "^10.3.0",
+    "env-var": "7.5.0",
+    "source-map-support": "^0.5.21"
+  }
+}
