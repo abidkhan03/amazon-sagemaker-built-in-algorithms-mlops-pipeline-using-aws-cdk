@@ -13,6 +13,9 @@ _bucket_key_for_input = os.environ.get('BucketKeyForInput', 'no-bucket-key-for-i
 _bucket_key_for_output = os.environ.get('BucketKeyForOutput', 'no-bucket-key-for-output')
 
 
+from sagemaker import image_uris
+
+
 def trigger_statemachine(client, execution_name, statemachine_arn, request):
     print('trigger_statemachine: request==>', request)
 
@@ -49,6 +52,8 @@ def get_request_template():
 
 def handle(event, context):
     print('event--->', event)
+    xboost = image_uris.retrieve(framework='xgboost',region='us-east-2',version='1.5-1')
+    print('xboost: ',xboost)
 
     client = boto3.client('stepfunctions')
 

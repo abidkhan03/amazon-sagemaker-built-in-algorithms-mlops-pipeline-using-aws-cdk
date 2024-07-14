@@ -1,7 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-DATA_PATH=codes/glue/churn-xgboost/data
-DATA_FILE=input.csv
+# DATA_PATH=codes/glue/churn-xgboost/data
+DATA_PATH=datasets
+DATA_FILE=cardata33.csv
 ENDPOINT_NAME=churn-xgboost
 
 APP_CONFIG=$1

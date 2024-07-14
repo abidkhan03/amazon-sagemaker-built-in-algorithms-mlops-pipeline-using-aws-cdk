@@ -4,19 +4,15 @@
         "Stage": "dev",
         "Account": "100209637061",
         "Region": "us-east-2",
-        "Profile": "abdullah86"
+        "Profile": "abdul"
     },
-
     "Stack": {
         "ChurnXgboostPipeline": {
             "Name": "ChurnXgboostPipelineStack",
-
             "EndpointName": "churn-xgboost",
-
             "GlueJobFilePath": "codes/glue/churn-xgboost/src/glue_etl.py",
             "GlueJobTimeoutInMin": 30,
-
-            "TrainContainerImage": "100209637061.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest",
+            "TrainContainerImage": "257758044811.dkr.ecr.us-east-2.amazonaws.com/sagemaker-xgboost:1.7-1",
             "TrainParameters": {
                 "max_depth": "5",
                 "eval_metric": "error",
@@ -25,15 +21,13 @@
                 "min_child_weight": "6",
                 "subsample": "0.8",
                 "objective": "binary:logistic",
-                "silent": "0",
+                "verbosity": "0",
                 "num_round": "100"
             },
             "TrainInputContent": "text/csv",
             "TrainInstanceType": "c5.xlarge",
-
             "ModelValidationEnable": true,
             "ModelErrorThreshold": 0.1,
-
             "EndpointInstanceType": "t2.2xlarge",
             "EndpointInstanceCount": 1
         }

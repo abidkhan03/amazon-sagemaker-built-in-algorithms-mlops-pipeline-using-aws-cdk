@@ -12,6 +12,7 @@ import * as base from '../../../lib/template/stack/base/base-stack';
 import { AppContext } from '../../../lib/template/app-context';
 
 import { GlueJobConstruct } from '../../../lib/template/construct/pattern/glue-job-construct';
+import { join } from 'path';
 
 interface MLOpsPipelineConfig {
     EndpointName: string;
@@ -278,7 +279,10 @@ export class MLOpsPipelineStack extends base.BaseStack {
             effect: iam.Effect.ALLOW,
             actions: [
                 "s3:ListBucket",
-                "s3:*Object"
+                "s3:*Object",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
             ],
             resources: [
                 '*'
@@ -425,11 +429,12 @@ export class MLOpsPipelineStack extends base.BaseStack {
     }
 
     private createTriggerStateMachineLambda(baseName: string, bucket: s3.Bucket, stateMachine: sfn.StateMachine) {
-        const func = new lambda.Function(this, `${baseName}-trigger-statemachine`, {
+        const func = new lambda.DockerImageFunction(this, `${baseName}-trigger-statemachine`, {
             functionName: `${this.projectPrefix}-${baseName}TriggerSateMachine`,
-            runtime: lambda.Runtime.PYTHON_3_9,
-            code: lambda.Code.fromAsset('codes/lambda/mlops-trigger-statemachine/src'),
-            handler: 'handler.handle',
+            // runtime: lambda.Runtime.PYTHON_3_9,
+            // code: lambda.Code.fromAsset('codes/lambda/mlops-trigger-statemachine/src'),
+            code: lambda.DockerImageCode.fromImageAsset(join(__dirname, '../../../codes/lambda/mlops-trigger-statemachine/src')),
+            // handler: 'handler.handle',
             environment: {
                 EndpointName: `${this.projectPrefix}-${baseName}`,
                 StateMachineArn: stateMachine.stateMachineArn,

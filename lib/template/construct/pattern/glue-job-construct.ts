@@ -79,7 +79,7 @@ export class GlueJobConstruct extends BaseConstruct {
             defaultArguments: {
                 '--job-language': 'python'
             },
-            glueVersion: '2.0',
+            glueVersion: '4.0',
             workerType: 'Standard',
             numberOfWorkers: 2,
             timeout: props.timeoutInMin

@@ -3,10 +3,10 @@ import csv
 import boto3
 
 
-os.environ['AWS_PROFILE'] = 'cdk-v2'
-_endpoint_name = 'MLOpsDemo-churn-xgboost'
+os.environ['AWS_PROFILE'] = 'abdul'
+_endpoint_name = 'MLOpsdev-churn-xgboost'
 
-_input_file = 'codes/glue/churn-xgboost/data/input.csv'
+_input_file = 'datasets/cardata33.csv'
 _sagemaker = boto3.client('sagemaker-runtime')
 
 def test_invoke(endpoint_name: str, input_file: str, loop_count: int):

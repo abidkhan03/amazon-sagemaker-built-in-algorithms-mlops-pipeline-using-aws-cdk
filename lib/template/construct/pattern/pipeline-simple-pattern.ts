@@ -373,7 +373,7 @@ export class PipelineSimplePattern extends BaseConstruct {
                     install: {
                         // https://docs.aws.amazon.com/codebuild/latest/userguide/runtime-versions.html
                         'runtime-versions': {
-                            nodejs: 14
+                            nodejs: 18
                         },
                         commands: this.createInstallCommands(assumeRoleEnable, false)
                     },
@@ -423,7 +423,7 @@ export class PipelineSimplePattern extends BaseConstruct {
                 phases: {
                     install: {
                         'runtime-versions': {
-                            nodejs: 14
+                            nodejs: 18
                         },
                         commands: this.createInstallCommands(assumeRoleEnable, true)
                     },
